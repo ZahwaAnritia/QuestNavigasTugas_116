@@ -69,7 +69,7 @@ fun FormIsian(
                     .background(Color.White, shape = RoundedCornerShape(12.dp))
                     .padding(16.dp)
             ) {
-                // Input Nama
+
                 Text("NAMA LENGKAP", fontSize = 12.sp, color = Color.Gray)
                 OutlinedTextField(
                     value = textNama,
@@ -107,7 +107,50 @@ fun FormIsian(
                         }
                     }
                 }
+                Text(
+                    "STATUS PERKAWINAN",
+                    fontSize = 12.sp,
+                    color = Color.Gray,
+                    modifier = Modifier.padding(top = 20.dp, bottom = 8.dp)
+                )
+                Column {
+                    statusPerkawinan.forEach { item ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .selectable(
+                                    selected = textStatus == item,
+                                    onClick = { textStatus = item }
+                                )
+                                .padding(vertical = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(selected = textStatus == item, onClick = { textStatus = item })
+                            Text(item, modifier = Modifier.padding(start = 8.dp))
+                        }
+                    }
+                }
+
+
+                Text(
+                    "ALAMAT",
+                    fontSize = 12.sp,
+                    color = Color.Gray,
+                    modifier = Modifier.padding(top = 20.dp, bottom = 8.dp)
+                )
+                OutlinedTextField(
+                    value = textAlamat,
+                    onValueChange = { textAlamat = it },
+                    singleLine = true,
+                    placeholder = { Text("Alamat", color = Color.Gray) },
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = Color.LightGray,
+                        unfocusedBorderColor = Color.LightGray
+                    )
+                )
             }
+
         }
     }
 }
