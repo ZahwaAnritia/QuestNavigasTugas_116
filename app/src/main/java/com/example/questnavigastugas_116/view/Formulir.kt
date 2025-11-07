@@ -3,10 +3,15 @@ package com.example.questnavigastugas_116.view
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -57,6 +62,52 @@ fun FormIsian(
                     .background(purpleHeader, shape = RoundedCornerShape(8.dp))
                     .padding(16.dp)
             )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp)
+                    .background(Color.White, shape = RoundedCornerShape(12.dp))
+                    .padding(16.dp)
+            ) {
+                // Input Nama
+                Text("NAMA LENGKAP", fontSize = 12.sp, color = Color.Gray)
+                OutlinedTextField(
+                    value = textNama,
+                    onValueChange = { textNama = it },
+                    singleLine = true,
+                    placeholder = { Text("Isian nama lengkap", color = Color.Gray) },
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = Color.LightGray,
+                        unfocusedBorderColor = Color.LightGray
+                    )
+                )
+
+
+                Text(
+                    "JENIS KELAMIN",
+                    fontSize = 12.sp,
+                    color = Color.Gray,
+                    modifier = Modifier.padding(top = 20.dp, bottom = 8.dp)
+                )
+                Column {
+                    gender.forEach { item ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .selectable(
+                                    selected = textJK == item,
+                                    onClick = { textJK = item }
+                                )
+                                .padding(vertical = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(selected = textJK == item, onClick = { textJK = item })
+                            Text(item, modifier = Modifier.padding(start = 8.dp))
+                        }
+                    }
+                }
+            }
         }
     }
 }
