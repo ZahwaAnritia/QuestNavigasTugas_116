@@ -6,13 +6,18 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -150,7 +155,46 @@ fun FormIsian(
                     )
                 )
             }
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 24.dp)
+                    .height(50.dp),
+                enabled = textNama.isNotEmpty() && textJK.isNotEmpty() &&
+                        textStatus.isNotEmpty() && textAlamat.isNotEmpty(),
+                onClick = { showDialog = true },
+                shape = RoundedCornerShape(25.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = purpleButton)
+            ) {
+                Text("Submit", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color.White)
+            }
 
+            if (showDialog) {
+                AlertDialog(
+                    onDismissRequest = { showDialog = false },
+                    title = { Text("Data Pendaftaran", fontWeight = FontWeight.Bold, fontSize = 18.sp) },
+                    text = {
+                        Column {
+                            Text("Nama : $textNama")
+                            Text("Gender : $textJK")
+                            Text("Status : $textStatus")
+                            Text("Alamat : $textAlamat")
+                        }
+                    },
+                    confirmButton = {
+                        TextButton(
+                            onClick = {
+                                onSubmitBtnClick(textNama, textJK, textStatus, textAlamat)
+                                showDialog = false
+                            }
+                        ) {
+                            Text("OK", color = purpleButton, fontWeight = FontWeight.Bold)
+                        }
+                    },
+                    containerColor = Color.White,
+                    shape = RoundedCornerShape(16.dp)
+                )
+            }
         }
     }
 }
