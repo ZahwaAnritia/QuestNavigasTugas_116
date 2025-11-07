@@ -4,5 +4,10 @@
     <string name="back">Back</string>
     <string name="tampil">List Daftar Peserta</string>
     <string name="home">Form Isian</string>
-
+    <string name="nama_lengkap">NAMA LENGKAP</string>
+    <string name="jenis_kelamin">JENIS KELAMIN</string>
+    <string name="alamat">ALAMAT</string>
+    <string name="status_perkawinan">Status Perkawinan</string>
+    <string name="author_name">Zahwa Anritia</string>
+    <string name="author_nim">20230140116</string>
 </resources>
