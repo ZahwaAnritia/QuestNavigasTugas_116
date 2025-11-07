@@ -14,7 +14,6 @@ import com.example.questnavigastugas_116.view.ListPeserta
 import com.example.questnavigastugas_116.view.SplashScreen
 
 
-fun Modifier.Companion.padding(isiRuang: PaddingValues) {}
 
 enum class Navigasi {
     Splash,     // Beranda

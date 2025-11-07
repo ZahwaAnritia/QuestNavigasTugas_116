@@ -35,166 +35,180 @@ fun FormIsian(
     modifier: Modifier = Modifier,
     onSubmitBtnClick: (String, String, String, String) -> Unit
 ) {
-    @androidx.compose.runtime.Composable {
-        var textNama by remember { mutableStateOf("") }
-        var textAlamat by remember { mutableStateOf("") }
-        var textJK by remember { mutableStateOf("") }
-        var textStatus by remember { mutableStateOf("") }
-        var showDialog by remember { mutableStateOf(false) }
+    var textNama by remember { mutableStateOf("") }
+    var textAlamat by remember { mutableStateOf("") }
+    var textJK by remember { mutableStateOf("") }
+    var textStatus by remember { mutableStateOf("") }
+    var showDialog by remember { mutableStateOf(false) }
 
-        val gender = listOf("Laki-laki", "Perempuan")
-        val statusPerkawinan = listOf("Janda", "Lajang", "Duda")
+    val gender = listOf("Laki-laki", "Perempuan")
+    val statusPerkawinan = listOf("Janda", "Lajang", "Duda")
 
-        val purpleBackground = Color(0xFFE6D5F5)
-        val purpleButton = Color(0xFF7C3AED)
-        val purpleHeader = Color(0xFFB794F6)
+    val purpleBackground = Color(0xFFE6D5F5)
+    val purpleButton = Color(0xFF7C3AED)
+    val purpleHeader = Color(0xFFB794F6)
 
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(purpleBackground)
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.Start
+    ) {
+        Text(
+            text = "Formulir Pendaftaran",
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.White,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(purpleHeader, shape = RoundedCornerShape(8.dp))
+                .padding(16.dp)
+        )
         Column(
-            modifier = modifier
-                .fillMaxSize()
-                .background(purpleBackground)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.Start
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp)
+                .background(Color.White, shape = RoundedCornerShape(12.dp))
+                .padding(16.dp)
         ) {
-            Text(
-                text = "Formulir Pendaftaran",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(purpleHeader, shape = RoundedCornerShape(8.dp))
-                    .padding(16.dp)
+
+            Text("NAMA LENGKAP", fontSize = 12.sp, color = Color.Gray)
+            OutlinedTextField(
+                value = textNama,
+                onValueChange = { textNama = it },
+                singleLine = true,
+                placeholder = { Text("Isian nama lengkap", color = Color.Gray) },
+                modifier = Modifier.fillMaxWidth(),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = Color.LightGray,
+                    unfocusedBorderColor = Color.LightGray
+                )
             )
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 16.dp)
-                    .background(Color.White, shape = RoundedCornerShape(12.dp))
-                    .padding(16.dp)
-            ) {
-
-                Text("NAMA LENGKAP", fontSize = 12.sp, color = Color.Gray)
-                OutlinedTextField(
-                    value = textNama,
-                    onValueChange = { textNama = it },
-                    singleLine = true,
-                    placeholder = { Text("Isian nama lengkap", color = Color.Gray) },
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = Color.LightGray,
-                        unfocusedBorderColor = Color.LightGray
-                    )
-                )
 
 
-                Text(
-                    "JENIS KELAMIN",
-                    fontSize = 12.sp,
-                    color = Color.Gray,
-                    modifier = Modifier.padding(top = 20.dp, bottom = 8.dp)
-                )
-                Column {
-                    gender.forEach { item ->
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .selectable(
-                                    selected = textJK == item,
-                                    onClick = { textJK = item }
-                                )
-                                .padding(vertical = 4.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            RadioButton(selected = textJK == item, onClick = { textJK = item })
-                            Text(item, modifier = Modifier.padding(start = 8.dp))
-                        }
+            Text(
+                "JENIS KELAMIN",
+                fontSize = 12.sp,
+                color = Color.Gray,
+                modifier = Modifier.padding(top = 20.dp, bottom = 8.dp)
+            )
+            Column {
+                gender.forEach { item ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .selectable(
+                                selected = textJK == item,
+                                onClick = { textJK = item }
+                            )
+                            .padding(vertical = 4.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        RadioButton(selected = textJK == item, onClick = { textJK = item })
+                        Text(item, modifier = Modifier.padding(start = 8.dp))
                     }
                 }
-                Text(
-                    "STATUS PERKAWINAN",
-                    fontSize = 12.sp,
-                    color = Color.Gray,
-                    modifier = Modifier.padding(top = 20.dp, bottom = 8.dp)
-                )
-                Column {
-                    statusPerkawinan.forEach { item ->
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .selectable(
-                                    selected = textStatus == item,
-                                    onClick = { textStatus = item }
-                                )
-                                .padding(vertical = 4.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            RadioButton(selected = textStatus == item, onClick = { textStatus = item })
-                            Text(item, modifier = Modifier.padding(start = 8.dp))
-                        }
+            }
+            Text(
+                "STATUS PERKAWINAN",
+                fontSize = 12.sp,
+                color = Color.Gray,
+                modifier = Modifier.padding(top = 20.dp, bottom = 8.dp)
+            )
+            Column {
+                statusPerkawinan.forEach { item ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .selectable(
+                                selected = textStatus == item,
+                                onClick = { textStatus = item }
+                            )
+                            .padding(vertical = 4.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        RadioButton(
+                            selected = textStatus == item,
+                            onClick = { textStatus = item })
+                        Text(item, modifier = Modifier.padding(start = 8.dp))
                     }
                 }
+            }
 
 
-                Text(
-                    "ALAMAT",
-                    fontSize = 12.sp,
-                    color = Color.Gray,
-                    modifier = Modifier.padding(top = 20.dp, bottom = 8.dp)
+            Text(
+                "ALAMAT",
+                fontSize = 12.sp,
+                color = Color.Gray,
+                modifier = Modifier.padding(top = 20.dp, bottom = 8.dp)
+            )
+            OutlinedTextField(
+                value = textAlamat,
+                onValueChange = { textAlamat = it },
+                singleLine = true,
+                placeholder = { Text("Alamat", color = Color.Gray) },
+                modifier = Modifier.fillMaxWidth(),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = Color.LightGray,
+                    unfocusedBorderColor = Color.LightGray
                 )
-                OutlinedTextField(
-                    value = textAlamat,
-                    onValueChange = { textAlamat = it },
-                    singleLine = true,
-                    placeholder = { Text("Alamat", color = Color.Gray) },
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = Color.LightGray,
-                        unfocusedBorderColor = Color.LightGray
+            )
+        }
+
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 24.dp)
+                .height(50.dp),
+            enabled = textNama.isNotEmpty() && textJK.isNotEmpty() &&
+                    textStatus.isNotEmpty() && textAlamat.isNotEmpty(),
+            onClick = { showDialog = true },
+            shape = RoundedCornerShape(25.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = purpleButton)
+        ) {
+            Text("Submit", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color.White)
+        }
+
+        if (showDialog) {
+            AlertDialog(
+                onDismissRequest = { showDialog = false },
+                title = {
+                    Text(
+                        "Data Berhasil Disimpan!",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp,
+                        color = Color(0xFF4A148C)
                     )
-                )
-            }
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 24.dp)
-                    .height(50.dp),
-                enabled = textNama.isNotEmpty() && textJK.isNotEmpty() &&
-                        textStatus.isNotEmpty() && textAlamat.isNotEmpty(),
-                onClick = { showDialog = true },
-                shape = RoundedCornerShape(25.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = purpleButton)
-            ) {
-                Text("Submit", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color.White)
-            }
-
-            if (showDialog) {
-                AlertDialog(
-                    onDismissRequest = { showDialog = false },
-                    title = { Text("Data Pendaftaran", fontWeight = FontWeight.Bold, fontSize = 18.sp) },
-                    text = {
-                        Column {
-                            Text("Nama : $textNama")
-                            Text("Gender : $textJK")
-                            Text("Status : $textStatus")
-                            Text("Alamat : $textAlamat")
+                },
+                text = {
+                    Column {
+                        Text("Nama : $textNama")
+                        Text("Gender : $textJK")
+                        Text("Status : $textStatus")
+                        Text("Alamat : $textAlamat")
+                        Text(
+                            "\nTerima kasih sudah mendaftar!",
+                            fontWeight = FontWeight.Medium,
+                            color = Color.Gray
+                        )
+                    }
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            onSubmitBtnClick(textNama, textJK, textStatus, textAlamat)
+                            showDialog = false
                         }
-                    },
-                    confirmButton = {
-                        TextButton(
-                            onClick = {
-                                onSubmitBtnClick(textNama, textJK, textStatus, textAlamat)
-                                showDialog = false
-                            }
-                        ) {
-                            Text("OK", color = purpleButton, fontWeight = FontWeight.Bold)
-                        }
-                    },
-                    containerColor = Color.White,
-                    shape = RoundedCornerShape(16.dp)
-                )
-            }
+                    ) {
+                        Text("Tutup", color = Color(0xFF7C3AED), fontWeight = FontWeight.Bold)
+                    }
+                },
+                containerColor = Color(0xFFF8F4FF),
+                shape = RoundedCornerShape(16.dp)
+            )
         }
     }
 }
+

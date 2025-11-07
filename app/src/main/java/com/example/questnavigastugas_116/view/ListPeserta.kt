@@ -1,5 +1,7 @@
 package com.example.questnavigastugas_116.view
 
+import android.R.color.black
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -36,11 +38,14 @@ fun ListPeserta(
     onFormBtnClick: () -> Unit
 ) {
     val items = listOf(
-        Pair(first = stringResource(R.string.nama_lengkap), second = "Dimas Putra"),
-        Pair(first = stringResource(R.string.jenis_kelamin), second = "Laki-laki"),
+        Pair(first = stringResource(R.string.nama_lengkap), second = "Zahwa Anritia"),
+        Pair(first = stringResource(R.string.jenis_kelamin), second = "Perempuan"),
         Pair(first = stringResource(R.string.alamat), second = "Yogyakarta"),
         Pair(first = stringResource(R.string.status_perkawinan), second = "Lajang")
     )
+    val purpleBackground = Color(0xFFE6D5F5)
+    val purpleHeader = Color(0xFFB794F6)
+    val purpleButton = Color(0xFF7C3AED)
 
     Scaffold(
         topBar = {
@@ -48,11 +53,13 @@ fun ListPeserta(
                 title = {
                     Text(
                         text = stringResource(id = R.string.tampil),
-                        color = Color.White
+                        color = Color.White,
+                        fontSize = 27.sp,
+                        fontWeight = FontWeight.Bold
                     )
                 },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = colorResource(id = R.color.teal_700)
+                    containerColor = purpleHeader
                 )
             )
         }
@@ -61,6 +68,7 @@ fun ListPeserta(
             modifier = Modifier
                 .padding(isiRuang)
                 .fillMaxSize()
+                .background(purpleBackground)
                 .padding(16.dp),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
@@ -69,7 +77,7 @@ fun ListPeserta(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFF8F9FA)),
+                colors = CardDefaults.cardColors(containerColor = Color.White),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 shape = MaterialTheme.shapes.medium
             ) {
@@ -85,19 +93,20 @@ fun ListPeserta(
                         ) {
                             Text(
                                 text = item.first.uppercase(),
-                                fontSize = 14.sp,
+                                fontSize = 16.sp,
                                 color = Color.Gray
                             )
                             Text(
                                 text = item.second,
                                 fontWeight = FontWeight.Bold,
-                                fontFamily = FontFamily.Serif,
-                                fontSize = 20.sp
+                                fontFamily = FontFamily.Cursive,
+                                fontSize = 22.sp,
+                                color = Color.Black
                             )
                             Divider(
                                 modifier = Modifier.padding(vertical = 8.dp),
                                 thickness = 1.dp,
-                                color = Color.LightGray
+                                color = Color(0xFFCE93D8)
                             )
                         }
                     }
@@ -114,7 +123,7 @@ fun ListPeserta(
                     onClick = onHomeBtnClick,
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = colorResource(id = R.color.teal_700)
+                        containerColor = purpleButton
                     )
                 ) {
                     Text("Beranda")
@@ -124,7 +133,7 @@ fun ListPeserta(
                     onClick = onFormBtnClick,
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = colorResource(id = R.color.purple_500)
+                        containerColor = purpleButton
                     )
                 ) {
                     Text("Formulir Pendaftaran")
