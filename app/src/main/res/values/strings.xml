@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">QuestNavigasTugas_116</string>
+    <string name="submit">Submit</string>
+    <string name="back">Back</string>
+    <string name="tampil">List Daftar Peserta</string>
+    <string name="home">Form Isian</string>
+
 </resources>
