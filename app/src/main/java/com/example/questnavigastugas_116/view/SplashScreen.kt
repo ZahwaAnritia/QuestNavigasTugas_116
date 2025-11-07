@@ -38,3 +38,29 @@ fun SplashScreen(
         )
 
         Spacer(modifier = Modifier.height(40.dp))
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.weight(1f),
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "CARD-IST",
+                fontSize = 36.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF6B21A8),
+                letterSpacing = 2.sp
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(text = "🪐", fontSize = 72.sp)
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(text = "MOBILE APP", fontSize = 14.sp, color = Color(0xFF6B21A8))
+            Text(
+                text = "2025",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF6B21A8)
+            )
+        }
+    }
+}
