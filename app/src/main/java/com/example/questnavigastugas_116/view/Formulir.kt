@@ -202,7 +202,7 @@ fun FormIsian(
                             showDialog = false
                         }
                     ) {
-                        Text("Tutup", color = Color(0xFF7C3AED), fontWeight = FontWeight.Bold)
+                        Text("OK", color = Color(0xFF7C3AED), fontWeight = FontWeight.Bold)
                     }
                 },
                 containerColor = Color(0xFFF8F4FF),

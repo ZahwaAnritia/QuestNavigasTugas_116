@@ -25,6 +25,7 @@ import com.example.questnavigastugas_116.R
 fun SplashScreen(
     onSubmitClick: () -> Unit
 ) {
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -37,7 +38,7 @@ fun SplashScreen(
 
         Text(
             text = "Selamat Datang",
-            fontSize = 28.sp,
+            fontSize = 40.sp,
             fontWeight = FontWeight.Medium,
             color = Color(0xFF6B21A8)
         )
@@ -57,7 +58,7 @@ fun SplashScreen(
                 letterSpacing = 2.sp
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "🪐", fontSize = 72.sp)
+            Text(text = "\uD83D\uDDA5\uFE0F", fontSize = 72.sp)
             Spacer(modifier = Modifier.height(16.dp))
             Text(text = "MOBILE APP", fontSize = 14.sp, color = Color(0xFF6B21A8))
             Text(

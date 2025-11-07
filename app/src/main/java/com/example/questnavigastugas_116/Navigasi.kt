@@ -4,6 +4,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -26,6 +30,9 @@ fun DataApp(
     navController: NavHostController = rememberNavController(),
     modifier: Modifier = Modifier
 ) {
+    var daftarPeserta by rememberSaveable { mutableStateOf(listOf<Pair<String, String>>()) }
+
+
     Scaffold { isiRuang ->
         NavHost(
             navController = navController,
@@ -45,18 +52,17 @@ fun DataApp(
             // 🔹 Halaman List Peserta
             composable(route = Navigasi.List.name) {
                 ListPeserta(
+                    dataPeserta = daftarPeserta, // kirim data ke ListPeserta
                     onBackBtnClick = {
-                        // Kalau mau keluar balik ke beranda
                         navController.popBackStack(Navigasi.Splash.name, inclusive = false)
                     },
                     onHomeBtnClick = {
-                        // Kembali ke Beranda
                         navController.navigate(Navigasi.Splash.name) {
                             popUpTo(Navigasi.Splash.name) { inclusive = true }
                         }
                     },
                     onFormBtnClick = {
-                        // Dari List -> ke Formulir
+                        // buka halaman form pendaftaran
                         navController.navigate(Navigasi.Formulir.name)
                     }
                 )

@@ -33,6 +33,7 @@ import com.example.questnavigastugas_116.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListPeserta(
+    dataPeserta: List<Pair<String, String>>,
     onBackBtnClick: () -> Unit,
     onHomeBtnClick: () -> Unit,
     onFormBtnClick: () -> Unit
@@ -57,6 +58,7 @@ fun ListPeserta(
                         fontSize = 27.sp,
                         fontWeight = FontWeight.Bold
                     )
+
                 },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = purpleHeader
