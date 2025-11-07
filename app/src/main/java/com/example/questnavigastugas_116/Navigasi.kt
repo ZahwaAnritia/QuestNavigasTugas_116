@@ -1,12 +1,15 @@
 package com.example.questnavigastugas_116
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.questnavigastugas_116.view.FormIsian
 import com.example.questnavigastugas_116.view.ListPeserta
 import com.example.questnavigastugas_116.view.SplashScreen
 
@@ -59,3 +62,18 @@ fun DataApp(
                     }
                 )
             }
+            composable(route = Navigasi.Formulir.name) {
+                FormIsian(
+                    onSubmitBtnClick = { _, _, _, _ ->
+                        // Setelah submit, kembali ke List Peserta
+                        navController.navigate(Navigasi.List.name) {
+                            popUpTo(Navigasi.List.name) { inclusive = true }
+                        }
+
+                    }
+                )
+
+            }
+        }
+    }
+}
